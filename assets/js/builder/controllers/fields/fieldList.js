@@ -34,6 +34,15 @@ define( [ 'models/app/optionRepeaterCollection' ], function( ListOptionCollectio
         },
 
         updateOptionValue: function( e, model, dataModel, settingModel, optionView ) {
+            var newVal = model.get( 'value' );
+            // Sanitize any unwanted special characters.
+            // TODO: This assumes English is the standard language.
+            //       We might want to allow other language characters through this check later.
+            var pattern = /[^0-9a-zA-Z_@.-]/g;
+            newVal = newVal.replace( pattern, '' );
+            model.set( 'value', newVal );
+            // Re-render the value.
+            optionView.render();
 
             var findWhere = _.findWhere( fieldTypeData, { id: dataModel.get( 'type' ) } );
             if( 'undefined' == typeof findWhere ) return;
