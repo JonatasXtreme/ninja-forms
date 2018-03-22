@@ -16,6 +16,9 @@ define([], function() {
 			if ( 1 == response.data.settings.clear_complete ) {
 				// nfRadio.channel( 'form-' + response.data.form_id ).trigger( 'reset' );
 				formModel.get( 'fields' ).reset( formModel.get( 'loadedFields' ) );
+                if ( 1 != response.data.settings.hide_complete ) {
+                    nfRadio.channel( 'captcha' ).trigger( 'reset' );
+                }
 			}
 
 			if ( 1 == response.data.settings.hide_complete ) {

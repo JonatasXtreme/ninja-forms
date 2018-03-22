@@ -3,13 +3,13 @@
 /**
  * Class NF_Abstracts_Batch_Process
  */
-abstract class NF_Abstracts_Batch_Process
+abstract class NF_Abstracts_BatchProcess
 {
 
     /**
      * Constructor
      */
-    public function __construct()
+    public function __construct( $data = array() )
     {
         //Bail if we aren't in the admin.
         if ( ! is_admin() )
